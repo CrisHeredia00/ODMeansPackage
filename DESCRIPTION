@@ -1,0 +1,28 @@
+Package: ODMeans
+Type: Package
+Title: OD-means: k-means for origin-destination
+Version: 0.1.0
+Author: c(person("Cristobal Heredia", "Developer", role = "aut", email = "cherediagalleguillos@gmail.com"),
+        person("Sebastian Moreno", "Developer", role = c("cre", "aut"),  email = "sebastian.moreno.araya@gmail.com"
+        person("Wilfredo Yushimito, "Thesis advisor", role = "ths", email = "wilfredo.yushimito@uai.cl"))
+Maintainer: Sebastian Moreno <sebastian.moreno.araya@gmail.com>
+Description: OD-means is a hierarchical adaptive k-means algorithm based on origin-destination pairs. 
+    In the first layer of the hierarchy, the clusters are separated automatically based on the variation 
+    of the within-cluster distance of each cluster until convergence. The second layer of the hierarchy 
+    corresponds to the sub clustering process of small clusters based on the distance between the origin 
+    and destination of each cluster.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
+Imports: 
+    geosphere,
+    ggplot2,
+    stats
+Collate:
+    'ODMeansSampleData.R'
+    'dinamic_clusters.R'
+    'hierarchical_clusters.R'
+    'od_means.R'
+Depends: 
+    R (>= 2.10)
