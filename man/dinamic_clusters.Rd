@@ -27,7 +27,7 @@ withinss Vector of within-cluster sum of squares, one component per cluster.
 tot.withinss Total within-cluster sum of squares, i.e. sum(withinss).
 betweenss The between-cluster sum of squares, i.e. totss-tot.withinss.
 size The number of points in each cluster.
-level_hierarchy Corresponds of the hierarchy level of the cluster, can be "Global" or "Local"
+level_hierarchy Corresponds of the hierarchy level of the cluster, can be "Global" or "Local".
 }
 \description{
 Dinamic Clusters Function

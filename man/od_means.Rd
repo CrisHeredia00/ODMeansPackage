@@ -15,7 +15,7 @@ Initial Latitude | Initial Longitude | Final Latitude | Final Longitude}
 \item{limitsSeparation}{Range to determine if a drastic change has happened between a cluster and its separation.
 A bigger value makes more difficult to separate a cluster.}
 
-\item{maxDist}{Maximum distance to join two points. This is based on the euclidean distance.}
+\item{maxDist}{Maximum distance to join two points. This is based on the haversine distance.}
 
 \item{distHierarchical}{Maximum distance to create a new hierarchy per cluster}
 }

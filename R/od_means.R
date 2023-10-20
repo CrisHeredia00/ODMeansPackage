@@ -13,7 +13,7 @@
 #'
 #' @examples
 #' data(ODMeansSampleData)
-#' od_means(ODMeansSampleData, 5, 200, 2500, 500)
+#' od_means(ODMeansSampleData, 5, 1000, 2500, 500)
 od_means <- function(data, numK, limitsSeparation, maxDist, distHierarchical){
   kcluster = dinamic_clusters(data, numK, limitsSeparation, maxDist)
   return(hierarchical_clusters(data, kcluster, distHierarchical))

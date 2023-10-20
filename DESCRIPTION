@@ -1,4 +1,4 @@
-Package: ODMeans
+Package: ODMeansPackage
 Type: Package
 Title: OD-means: k-means for origin-destination
 Version: 0.1.0
@@ -14,7 +14,7 @@ Description: OD-means is a hierarchical adaptive k-means algorithm based on orig
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Imports: 
     geosphere,
     ggplot2,
