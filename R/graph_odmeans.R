@@ -1,26 +1,6 @@
-
-coordinates
-
-custom_source <- list(
-  url = "AIzaSyDHnRGnUBfhwEjZ7l_X9G54ojjvgugFAYI",
-  zoom = 10,
-  extent = "custom",
-  bbox =c(left = -70.2, bottom =  -34.1, right = -70.2, top = -32.9 )
-)
-
-
-
-a = c(left = lowerleftlon, bottom = lowerleftlat, right = upperrightlon, top = upperrightlat )
-map = get_googlemap(bbox = a)
-
-ggmap(map)
-
-
-
-d_means_graph <- function(odmeans_data, title="ODMeans Graph", borders=0.2, zoom=4, maptype=c("roadmap"), add_cluster=TRUE){
+od_means_graph <- function(odmeans_data, title="ODMeans Graph", borders=0.2, zoom=4, add_cluster=TRUE){
 
   # Obtain all information to graph
-  #odmeans_data = testing
   dfODMeans = data.frame(odmeans_data[["centers"]])
   colnames(dfODMeans) <- c("OriginLatitude", "OriginLongitude", "DestinationLatitude", "DestinationLongitude")
 
@@ -49,11 +29,11 @@ d_means_graph <- function(odmeans_data, title="ODMeans Graph", borders=0.2, zoom
   upperrightlat = upperrightlat + lat_size*borders*sign(lat_size)
 
 
-  location = c(left = lowerleftlon, bottom = upperrightlon, right = lowerleftlat, top = upperrightlat )
+  coordinates = c(lowerleftlon, lowerleftlat, upperrightlon, upperrightlat )
 
   map <- tryCatch(
     {
-      get_googlemap(location = location, zoom = zoom, maptype = maptype)
+      get_stamenmap(bbox = coordinates, zoom = zoom, maptype = c("terrain-lines"))
     },
     error = function(e) {
       message("An error occurred while getting the map, try changing zoom, maptype or data.")
@@ -111,8 +91,10 @@ d_means_graph <- function(odmeans_data, title="ODMeans Graph", borders=0.2, zoom
 
 #function(data, numK, limitsSeparation, maxDist, distHierarchical)
 
-od_means_graph(testing_2, title="ODMeans Taxi Graph", borders=0.2, zoom=11, maptype=c("roadmap"), add_cluster=TRUE)
+od_means_graph(testing, title="ODMeans Taxi Graph", borders=0.2, zoom=10, add_cluster=TRUE)
 
+a = get_stamenmap(bbox =c(10,5,12,7) , zoom = 8, maptype =c("terrain-lines"))
+ggmap(a)
 
 testing = od_means(ODMeansTaxiData, 10, 30, 2200, 367)
 testing_2 = od_means(ODMeansTaxiData, 10, 30, 2200, 700)
