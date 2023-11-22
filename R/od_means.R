@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' data(ODMeansTaxiData)
-#' od_means(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
+#' odmeans_data = od_means(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
 od_means <- function(data, numKGlobal, limitSeparationGlobal, maxDistGlobal, distHierarchical, numKLocal, limitSeparationLocal, maxDistLocal){
 
   global_cluster = first_hierarchy(data, numKGlobal, limitSeparationGlobal, maxDistGlobal)

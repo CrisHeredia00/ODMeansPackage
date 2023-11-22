@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' data(ODMeansTaxiData)
-#' first_hierarchy(ODMeansTaxiData, 10, 30, 1000)
+#' first_hierarchy_data = first_hierarchy(ODMeansTaxiData, 10, 30, 1000)
 first_hierarchy <- function(data, numK, limitsSeparation, maxDist) {
 
   #ejemplo sintetico, synthetic_data
@@ -121,5 +121,6 @@ first_hierarchy <- function(data, numK, limitsSeparation, maxDist) {
                               betweenss=(totss-tot.withinss),
                               size=clusteredData$size,
                               level_hierarchy = rep("Global",nrow(clusteredData$centers))))
+  class(finalCluster) <- "ODMeans"
   return(finalCluster)
 }

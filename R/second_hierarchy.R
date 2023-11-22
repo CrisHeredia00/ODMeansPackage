@@ -79,5 +79,7 @@ second_hierarchy <- function(data,Kcluster,distHierarchical,numKLocal,limitSepar
   #Betweeness
   finalCluster$betweenss=(totss-tot.withinss)
 
+  class(finalCluster) <- "ODMeans"
+
   return(finalCluster)
 }
