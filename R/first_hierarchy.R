@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' data(ODMeansTaxiData)
-#' first_hierarchy_data = first_hierarchy(ODMeansTaxiData, 10, 30, 1000)
+#' first_hierarchy_data = first_hierarchy(ODMeansTaxiData, 10, 300, 1000)
 first_hierarchy <- function(data, numK, limitsSeparation, maxDist) {
 
   #ejemplo sintetico, synthetic_data

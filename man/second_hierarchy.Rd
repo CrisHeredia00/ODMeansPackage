@@ -35,6 +35,6 @@ Second Hierarchy Clusters
 }
 \examples{
 data(ODMeansTaxiData)
-first_hierarchy_data = first_hierarchy(ODMeansTaxiData, 10, 30, 1000)
-second_hierarchy_data = second_hierarchy(ODMeansTaxiData, first_hierarchy_data, 2200, 3, 5, 100)
+first_hierarchy_data = first_hierarchy(ODMeansTaxiData, 10, 500, 1000)
+second_hierarchy_data = second_hierarchy(ODMeansTaxiData, first_hierarchy_data, 2200, 3, 50, 100)
 }

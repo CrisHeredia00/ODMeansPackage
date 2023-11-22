@@ -34,4 +34,4 @@ odmeans_graph = od_means_graph(odmeans_data, "ODMeans Taxi Graph", "roadmap", 11
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md). See the `LICENSE.md` file for more details.
+This project is licensed under GPL >= 3.

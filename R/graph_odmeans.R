@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' data(ODMeansTaxiData)
-#' odmeans_data = od_means(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
+#' odmeans_data = od_means(ODMeansTaxiData, 10, 300, 1000, 2200, 3, 50, 100)
 #' odmeans_graph = od_means_graph(odmeans_data, "ODMeans Taxi Graph", "roadmap", 11, FALSE)
 #'
 od_means_graph <- function(odmeans_data, title="ODMeans Graph", maptype  = "roadmap", zoom=4, add_cluster=TRUE){
