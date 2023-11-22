@@ -1,7 +1,7 @@
 Package: ODMeansPackage
 Type: Package
 Title: OD-means: k-means for origin-destination
-Version: 0.1.0
+Version: 0.2.0
 Author: c(person("Cristobal Heredia", "Developer", role = "aut", email = "herediagalleguillos@gmail.com"),
         person("Sebastian Moreno", "Developer", role = c("cre", "aut"),  email = "sebastian.moreno.araya@gmail.com"
         person("Wilfredo Yushimito, "Thesis advisor", role = "ths", email = "wilfredo.yushimito@uai.cl"))
