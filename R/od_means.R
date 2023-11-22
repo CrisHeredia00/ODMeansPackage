@@ -1,20 +1,26 @@
-#' ODMeans
+#' ODMeans Function
 #'
-#' @param data A data frame with four columns:
+#' @param data A data frame with four columns:\cr
 #' Initial Latitude | Initial Longitude | Final Latitude | Final Longitude
-#' @param numK Initial number of clusters in the first call of K-Means.
-#' @param limitsSeparation Range to determine if a drastic change has happened between a cluster and its separation.
-#' A bigger value makes more difficult to separate a cluster.
-#' @param maxDist Maximum distance to join two points. This is based on the haversine distance.
-#' @param distHierarchical Maximum distance to create a new hierarchy per cluster
+#' @param numKGlobal Initial number of clusters in the first call of k-means in the global hierarchy.
+#' @param limitSeparationGlobal Within cluster distance threshold to determine if a global cluster must be separated into two new clusters.
+#' @param maxDistGlobal Meter distance threshold used to re-estimate centroids in global hierarchy.
+#' @param distHierarchical Meter distance threshold between origin and destination to generate new local clusters from a first layer cluster
+#' @param numKLocal Initial number of clusters in the first call of k-means in the local hierarchy.
+#' @param limitSeparationLocal Within cluster distance threshold to determine if a local cluster must be separated into two new clusters.
+#' @param maxDistLocal Meter distance threshold used to re-estimate centroids in local hierarchy.
 #'
-#' @return Returns a structure that contains the final centers, clusters, sizes and hierarchy
+#' @return Returns an S3 class object similar to kmeans S3 Class, with eight properties.
 #' @export
 #'
 #' @examples
-#' data(ODMeansSampleData)
-#' od_means(ODMeansSampleData, 5, 1000, 2500, 500)
-od_means <- function(data, numK, limitsSeparation, maxDist, distHierarchical){
-  kcluster = dinamic_clusters(data, numK, limitsSeparation, maxDist)
-  return(hierarchical_clusters(data, kcluster, distHierarchical))
+#' data(ODMeansTaxiData)
+#' od_means(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
+od_means <- function(data, numKGlobal, limitSeparationGlobal, maxDistGlobal, distHierarchical, numKLocal, limitSeparationLocal, maxDistLocal){
+
+  global_cluster = first_hierarchy(data, numKGlobal, limitSeparationGlobal, maxDistGlobal)
+  local_cluster = second_hierarchy(data, global_cluster, distHierarchical, numKLocal, limitSeparationLocal, maxDistLocal)
+  return(local_cluster)
 }
+
+

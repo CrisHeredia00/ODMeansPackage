@@ -1,4 +1,20 @@
-od_means_graph <- function(odmeans_data, title="ODMeans Graph", borders=0.2, zoom=4, add_cluster=TRUE){
+#' Graph ODMeans Function
+#'
+#' @param odmeans_data It receives an object from S3 ODMeans class. However, it can also work with objects from similar classes like S3 k-Means
+#' @param title It receives an string, and corresponds to the title of the plot.
+#' @param maptype It receives a string with the type of the map. Depending on the map selected, it will change the background of it. The possible values are: “terrain”, “satellite”, “roadmap”, “hybrid”.
+#' @param zoom An integer from 3 (continent) to 21 (building), which controls the level of zoom applied to the map.
+#' @param add_cluster Receives TRUE or FALSE value. When True, it adds the number of the cluster to the arrows.
+#'
+#' @return A ggplot graph showing a map with the centers of the clusters.
+#' @export
+#'
+#' @examples
+#' data(ODMeansTaxiData)
+#' odmeans_data = od_means(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
+#' odmeans_graph = od_means_graph(odmeans_data, "ODMeans Taxi Graph", "roadmap", 11, FALSE)
+#'
+od_means_graph <- function(odmeans_data, title="ODMeans Graph", maptype  = "roadmap", zoom=4, add_cluster=TRUE){
 
   # Obtain all information to graph
   dfODMeans = data.frame(odmeans_data[["centers"]])
@@ -20,20 +36,14 @@ od_means_graph <- function(odmeans_data, title="ODMeans Graph", borders=0.2, zoo
   lowerleftlat = min(dfODMeans["OriginLatitude"], dfODMeans["DestinationLatitude"])
   upperrightlat = max(dfODMeans["OriginLatitude"], dfODMeans["DestinationLatitude"])
 
-  lon_size = upperrightlon - lowerleftlon
-  lat_size = upperrightlat - lowerleftlat
-
-  lowerleftlon = lowerleftlon - lon_size*borders*sign(lon_size)
-  upperrightlon = upperrightlon +lon_size*borders*sign(lon_size)
-  lowerleftlat = lowerleftlat - lat_size*borders*sign(lat_size)
-  upperrightlat = upperrightlat + lat_size*borders*sign(lat_size)
+  center =  c(lon = mean(c(lowerleftlon, upperrightlon)), lat = mean(c(lowerleftlat, upperrightlat)))
 
 
   coordinates = c(lowerleftlon, lowerleftlat, upperrightlon, upperrightlat )
 
   map <- tryCatch(
     {
-      get_stamenmap(bbox = coordinates, zoom = zoom, maptype = c("terrain-lines"))
+      ggmap::get_googlemap(center = center, zoom = zoom, maptype = maptype)
     },
     error = function(e) {
       message("An error occurred while getting the map, try changing zoom, maptype or data.")
@@ -49,66 +59,44 @@ od_means_graph <- function(odmeans_data, title="ODMeans Graph", borders=0.2, zoo
 
   ## Add cluster include number of clusters
   if (add_cluster == TRUE)
-    final_map = ggmap(map)+
-      geom_segment(data=dfODMeans,
-                   aes(y= OriginLatitude,
-                       yend= DestinationLatitude,
-                       x= OriginLongitude,
-                       xend= DestinationLongitude,
-                       color = Hierarchy),
-                   linewidth= 1,
-                   arrow= arrow(length = unit(0.4, "cm"))) +
-      scale_fill_manual(aesthetics = "colour", values = c("Local" = "royalblue","Global" = "red")) +
-      geom_label_repel(data=dfODMeans,
-                       aes(label=as.integer(clusters), y=OriginLatitude, x=OriginLongitude),
-                       alpha= 0.7,
-                       max.overlaps = 26,
-                       na.rm=TRUE,
-                       xlim = c(lowerleftlon, upperrightlon),
-                       ylim = c (lowerleftlat, upperrightlat)) +
-      theme_minimal() +
-      labs(title = paste(title))
+    final_map = ggmap::ggmap(map)+
+    ggplot2::geom_segment(data=dfODMeans,
+                 ggplot2::aes_string(y= "OriginLatitude",
+                     yend= "DestinationLatitude",
+                     x= "OriginLongitude",
+                     xend= "DestinationLongitude",
+                     color = "Hierarchy"),
+                 linewidth= 1,
+                 arrow= ggplot2::arrow(length = ggplot2::unit(0.4, "cm"))) +
+    ggplot2::scale_fill_manual(aesthetics = "colour", values = c("Local" = "royalblue","Global" = "red")) +
+    ggrepel::geom_label_repel(data=dfODMeans,
+                     ggplot2::aes_string(label="clusters", y="OriginLatitude", x="OriginLongitude"),
+                     alpha= 0.7,
+                     max.overlaps = 26,
+                     na.rm=TRUE,
+                     xlim = c(lowerleftlon, upperrightlon),
+                     ylim = c (lowerleftlat, upperrightlat)) +
+    ggplot2::theme_minimal() +
+    ggplot2::xlab("Longitude") +
+    ggplot2::ylab("Latitude") +
+    ggplot2::labs(title = paste(title))
+
   else {
-    final_map = ggmap(map)+
-      geom_segment(data=dfODMeans,
-                   aes(y= OriginLatitude,
-                       yend= DestinationLatitude,
-                       x= OriginLongitude,
-                       xend= DestinationLongitude,
-                       color = Hierarchy),
+    final_map = ggmap::ggmap(map)+
+      ggplot2::geom_segment(data=dfODMeans,
+                  ggplot2::aes_string(y= "OriginLatitude",
+                       yend= "DestinationLatitude",
+                       x= "OriginLongitude",
+                       xend= "DestinationLongitude",
+                       color = "Hierarchy"),
                    linewidth= 1,
-                   arrow= arrow(length = unit(0.4, "cm"))) +
-      scale_fill_manual(aesthetics = "colour", values = c("Local" = "royalblue","Global" = "red")) +
-      theme_minimal() +
-      labs(title = paste(title))
+                   arrow= ggplot2::arrow(length = ggplot2::unit(0.4, "cm"))) +
+      ggplot2::scale_fill_manual(aesthetics = "colour", values = c("Local" = "royalblue","Global" = "red")) +
+      ggplot2::theme_minimal() +
+      ggplot2::xlab("Longitude") +
+      ggplot2::ylab("Latitude") +
+      ggplot2::labs(title = paste(title))
   }
 
   return(final_map)
 }
-
-
-
-
-#function(data, numK, limitsSeparation, maxDist, distHierarchical)
-
-od_means_graph(testing, title="ODMeans Taxi Graph", borders=0.2, zoom=10, add_cluster=TRUE)
-
-a = get_stamenmap(bbox =c(10,5,12,7) , zoom = 8, maptype =c("terrain-lines"))
-ggmap(a)
-
-testing = od_means(ODMeansTaxiData, 10, 30, 2200, 367)
-testing_2 = od_means(ODMeansTaxiData, 10, 30, 2200, 700)
-
-
-testing = od_means(ODMeansSampleData, 5, 1000, 2500, 500)
-
-od_means_graph(testing, borders=0.2, zoom=4, maptype=c("terrain-lines"), add_cluster=FALSE)
-
-od_means_graph(testing, borders=0.2, zoom=11, maptype=c("terrain-lines"), add_cluster=TRUE)
-
-
-testing_kmeans = kmeans(ODMeansTaxiData, 30)
-
-
-
-

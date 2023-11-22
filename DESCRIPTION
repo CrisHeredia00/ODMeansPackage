@@ -2,7 +2,7 @@ Package: ODMeansPackage
 Type: Package
 Title: OD-means: k-means for origin-destination
 Version: 0.1.0
-Author: c(person("Cristobal Heredia", "Developer", role = "aut", email = "cherediagalleguillos@gmail.com"),
+Author: c(person("Cristobal Heredia", "Developer", role = "aut", email = "herediagalleguillos@gmail.com"),
         person("Sebastian Moreno", "Developer", role = c("cre", "aut"),  email = "sebastian.moreno.araya@gmail.com"
         person("Wilfredo Yushimito, "Thesis advisor", role = "ths", email = "wilfredo.yushimito@uai.cl"))
 Maintainer: Sebastian Moreno <sebastian.moreno.araya@gmail.com>
@@ -13,16 +13,20 @@ Description: OD-means is a hierarchical adaptive k-means algorithm based on orig
     and destination of each cluster.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 RoxygenNote: 7.2.3
 Imports: 
     geosphere,
     ggplot2,
-    stats
+    stats,
+    ggmap,
+    ggrepel
 Collate:
     'ODMeansSampleData.R'
-    'dinamic_clusters.R'
-    'hierarchical_clusters.R'
+    'ODMeansTaxiData.R'
+    'first_hierarchy.R'
+    'second_hierarchy.R'
     'od_means.R'
+    'graph_odmeans.R'
 Depends: 
     R (>= 2.10)

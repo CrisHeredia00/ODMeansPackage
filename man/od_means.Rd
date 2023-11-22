@@ -2,30 +2,44 @@
 % Please edit documentation in R/od_means.R
 \name{od_means}
 \alias{od_means}
-\title{ODMeans}
+\title{ODMeans Function}
 \usage{
-od_means(data, numK, limitsSeparation, maxDist, distHierarchical)
+od_means(
+  data,
+  numKGlobal,
+  limitSeparationGlobal,
+  maxDistGlobal,
+  distHierarchical,
+  numKLocal,
+  limitSeparationLocal,
+  maxDistLocal
+)
 }
 \arguments{
-\item{data}{A data frame with four columns:
+\item{data}{A data frame with four columns:\cr
 Initial Latitude | Initial Longitude | Final Latitude | Final Longitude}
 
-\item{numK}{Initial number of clusters in the first call of K-Means.}
+\item{numKGlobal}{Initial number of clusters in the first call of k-means in the global hierarchy.}
 
-\item{limitsSeparation}{Range to determine if a drastic change has happened between a cluster and its separation.
-A bigger value makes more difficult to separate a cluster.}
+\item{limitSeparationGlobal}{Within cluster distance threshold to determine if a global cluster must be separated into two new clusters.}
 
-\item{maxDist}{Maximum distance to join two points. This is based on the haversine distance.}
+\item{maxDistGlobal}{Meter distance threshold used to re-estimate centroids in global hierarchy.}
 
-\item{distHierarchical}{Maximum distance to create a new hierarchy per cluster}
+\item{distHierarchical}{Meter distance threshold between origin and destination to generate new local clusters from a first layer cluster}
+
+\item{numKLocal}{Initial number of clusters in the first call of k-means in the local hierarchy.}
+
+\item{limitSeparationLocal}{Within cluster distance threshold to determine if a local cluster must be separated into two new clusters.}
+
+\item{maxDistLocal}{Meter distance threshold used to re-estimate centroids in local hierarchy.}
 }
 \value{
-Returns a structure that contains the final centers, clusters, sizes and hierarchy
+Returns an S3 class object similar to kmeans S3 Class, with eight properties.
 }
 \description{
-ODMeans
+ODMeans Function
 }
 \examples{
-data(ODMeansSampleData)
-od_means(ODMeansSampleData, 5, 200, 2500, 500)
+data(ODMeansTaxiData)
+od_means(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
 }
