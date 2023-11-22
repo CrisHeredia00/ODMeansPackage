@@ -41,5 +41,5 @@ ODMeans Function
 }
 \examples{
 data(ODMeansTaxiData)
-od_means(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
+odmeans_data = od_means(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
 }

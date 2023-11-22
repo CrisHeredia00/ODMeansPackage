@@ -24,5 +24,5 @@ First Hierarchy Function
 }
 \examples{
 data(ODMeansTaxiData)
-first_hierarchy(ODMeansTaxiData, 10, 30, 1000)
+first_hierarchy_data = first_hierarchy(ODMeansTaxiData, 10, 30, 1000)
 }
