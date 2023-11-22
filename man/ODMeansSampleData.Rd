@@ -19,7 +19,7 @@ A data frame with 10000 rows and 5 variables:
 Synthetic data
 }
 \usage{
-ODMeansSampleData
+data(ODMeansSampleData)
 }
 \description{
 A dataset containing 1700 Origin-Destination points

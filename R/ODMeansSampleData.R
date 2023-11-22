@@ -12,4 +12,5 @@
 #'   ...
 #' }
 #' @source Synthetic data
+#' @usage data(ODMeansSampleData)
 "ODMeansSampleData"

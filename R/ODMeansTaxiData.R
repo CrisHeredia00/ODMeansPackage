@@ -11,4 +11,5 @@
 #'   ...
 #' }
 #' @source Taxi data
+#' @usage data(ODMeansTaxiData)
 "ODMeansTaxiData"

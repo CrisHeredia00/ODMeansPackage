@@ -18,7 +18,7 @@ A data frame with 452166 rows and 4 variables:
 Taxi data
 }
 \usage{
-ODMeansTaxiData
+data(ODMeansTaxiData)
 }
 \description{
 A dataset containing 1700 Origin-Destination points
