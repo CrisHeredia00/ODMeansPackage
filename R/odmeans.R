@@ -15,8 +15,8 @@
 #'
 #' @examples
 #' data(ODMeansTaxiData)
-#' odmeans_data = od_means(ODMeansTaxiData, 10, 300, 1000, 2200, 3, 50, 100)
-od_means <- function(data, numKGlobal, limitSeparationGlobal, maxDistGlobal, distHierarchical, numKLocal, limitSeparationLocal, maxDistLocal){
+#' odmeans_data = odmeans(ODMeansTaxiData, 10, 300, 1000, 2200, 3, 50, 100)
+odmeans <- function(data, numKGlobal, limitSeparationGlobal, maxDistGlobal, distHierarchical, numKLocal, limitSeparationLocal, maxDistLocal){
 
   global_cluster = first_hierarchy(data, numKGlobal, limitSeparationGlobal, maxDistGlobal)
   local_cluster = second_hierarchy(data, global_cluster, distHierarchical, numKLocal, limitSeparationLocal, maxDistLocal)

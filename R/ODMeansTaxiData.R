@@ -1,15 +1,15 @@
 #' Origin-Destination Taxi data
 #'
-#' A dataset containing 1700 Origin-Destination points
+#' The data frame contains the 452,166 trips collected for the months of March (2014 to 2016), July (2014 to 2016), and November (2014 and 2015). The data points are the taxi's initial and ending location based on latitude and longitude.
 #'
-#' @format A data frame with 452166 rows and 4 variables:
+#' @format A data frame with 452,166 rows and 4 variables:
 #' \describe{
-#'   \item{OriginLatitude}{Consists of the origin latitude dimension}
-#'   \item{OriginLongitude}{Consists of the origin longitude dimension}
-#'   \item{DestinationLatitude}{Consists of the destination latitude dimension}
-#'   \item{DestinationLongitude}{Consists of the destination longitude dimension}
+#'   \item{OriginLatitude}{Origin latitude dimension}
+#'   \item{OriginLongitude}{Origin longitude dimension}
+#'   \item{DestinationLatitude}{Destination latitude dimension}
+#'   \item{DestinationLongitude}{Destination longitude dimension}
 #'   ...
 #' }
-#' @source Taxi data
+#' @source Fantaxico, Fermanti Servicios de Ingeniería S.A, Santiago, Chile.
 #' @usage data(ODMeansTaxiData)
 "ODMeansTaxiData"

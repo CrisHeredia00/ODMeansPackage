@@ -6,7 +6,8 @@ Authors@R: c(
     person("Sebastian","Moreno",role = c("aut", "cre"),
            email = "sebastian.moreno.araya@gmail.com"),
     person("Cristobal", "Heredia", role = "aut"), 
-    person("Wilfredo", "Yushimito", role = "ths")
+    person("Wilfredo", "Yushimito", role = "ths"),
+    person("Gonzalo", "Huerta", role = "ths")
     )
 Maintainer: Sebastian Moreno <sebastian.moreno.araya@gmail.com>
 Description: OD-means is a hierarchical adaptive k-means algorithm based on origin-destination pairs. 
@@ -29,7 +30,7 @@ Collate:
     'ODMeansTaxiData.R'
     'first_hierarchy.R'
     'second_hierarchy.R'
-    'od_means.R'
-    'graph_odmeans.R'
+    'odmeans.R'
+    'odmeans_graph.R'
 Depends: 
     R (>= 3.5.0)

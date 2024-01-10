@@ -22,6 +22,6 @@ Synthetic data
 data(ODMeansSampleData)
 }
 \description{
-A dataset containing 1700 Origin-Destination points
+A synthetic data frame containing 1700 Origin-Destination points.
 }
 \keyword{datasets}

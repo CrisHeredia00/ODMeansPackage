@@ -28,8 +28,8 @@ To graph the ODMeans data, you can use the function od_means_graph(). It will re
 For example:
 ```R
 data(ODMeansTaxiData)
-odmeans_data = od_means(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
-odmeans_graph = od_means_graph(odmeans_data, "ODMeans Taxi Graph", "roadmap", 11, FALSE)
+odmeans_data = odmeans(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
+odmeans_graph = odmeans_graph(odmeans_data, "ODMeans Taxi Graph", "roadmap", 11, FALSE)
 ```
 
 ## License
