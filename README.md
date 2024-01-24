@@ -20,16 +20,16 @@ For example:
 
 ```R
 data(ODMeansTaxiData)
-od_means(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
+odmeans(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
 ```
 
-To graph the ODMeans data, you can use the function od_means_graph(). It will return a ggplot2 plot.
+To graph the ODMeans data, you can use the function odmeans_graph(). It will return a ggplot2 plot.
 
 For example:
 ```R
 data(ODMeansTaxiData)
-odmeans_data = odmeans(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
-odmeans_graph = odmeans_graph(odmeans_data, "ODMeans Taxi Graph", "roadmap", 11, FALSE)
+odmeans_clusters = odmeans(ODMeansTaxiData, 10, 30, 1000, 2200, 3, 5, 100)
+odmeans_graph = odmeans_graph(odmeans_clusters, "ODMeans Taxi Graph", "roadmap", 11, FALSE)
 ```
 
 ## License
